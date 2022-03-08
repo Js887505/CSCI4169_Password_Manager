@@ -10,6 +10,7 @@ class Configuration {
     console.log("Loading default configuration.");
     this.config = defaultConfig;
     this.loadLocalConfig(configFileName)
+
     console.log("Configuration loaded.")
   }
 
@@ -22,7 +23,7 @@ class Configuration {
       localConfig = JSON.parse(localConfig);
     }
     catch(err) {
-      console.log(`There was an error reading the file .env.local in the directory "${__dirname}". Please ensure this file is in valid JSON syntax.`);
+      console.log(`There was an error reading the file ${configFileName} in the directory "${__dirname}". Please ensure this file is in valid JSON syntax.`);
       console.log(err);
       console.log();
       localConfig = {};
