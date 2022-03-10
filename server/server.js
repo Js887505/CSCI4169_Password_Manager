@@ -46,6 +46,11 @@ app.get('/encryption_test', (req, res) => {
     });
 });
 
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/pages/index.html');
+});
+
+
 app.listen(config.port);
 
 console.log(config)
