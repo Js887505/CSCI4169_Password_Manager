@@ -2,10 +2,78 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-    scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+      html, body{
+        margin: 0;
+        width:357px;
+        height:600px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+      div{
+        padding-bottom: 20px;
+      }
+      #signupOrLoginSection{
+        text-align: center;
+      }
+      .signupOrLoginButton{
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;    
+      }
+      .backButton{
+        float: left;
+      }
+    </style>
   </head>
-<body>
-  <h1>Hello World</h1>
-</body>
+  <body>
+    <main>
+      <h1>Password Manager</h1>
+      <section id="signupOrLoginSection">
+        <!-- Initial Screen login or signup, other have no display -->
+        <div id="signupOrLoginButtons" style="display: inline">
+          <button id="signupButton" class="signupOrLoginButton" style="display: inline">Sign Up</button>
+          <h2 style="display: inline">/</h2>
+          <button id="loginButton" class="signupOrLoginButton" style="display: inline">Login</button>
+        </div>
+        <!-- If signup is selected, other have no display -->
+        <div id="signupDiv">
+          <div>
+            <button id="signupBackToMain" class="backButton">back</button>
+          </div>
+          <div>
+            <label>Username: </label>
+            <input id="username" type="text" placeholder="jinglejoo">
+          </div>
+          <div>
+            <label>Password: </label>
+            <input id="password" type="text" placeholder="orange123">
+          </div>
+          <div>
+              <button onclick="signup">Sign Up</button>
+          </div>'
+        </div>
+        <!-- If login is selected, other have no display -->
+        <div id="loginDiv">
+          <div>
+            <button id="loginBackToMain" class="backButton">back</button>
+          </div>
+          <div>
+            <label>Username: </label>
+            <input id="username" type="text" placeholder="jinglejoo">
+          </div>
+          <div>
+            <label>Password: </label>
+            <input id="password" type="text" placeholder="orange123">
+          </div>
+          <div>
+            <button onclick="signup">Login</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script type="text/javascript" src="pageChangeScript.js"></script>
 </html>
