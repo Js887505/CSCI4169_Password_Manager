@@ -51,7 +51,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-  res.sendFile(__dirname + '/pages/index.html');
+  res.sendFile(__dirname + '/pages/login.html');
+});
+
+app.get('/register', function(req, res) {
+  res.sendFile(__dirname + '/pages/register.html');
 });
 
 app.listen(config.port);
