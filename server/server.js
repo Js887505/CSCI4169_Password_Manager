@@ -2,6 +2,7 @@
 Primary server file for running things and handling requests.
 
 Author(s): Keith Pineo
+Ty Fetinko
 */
 console.log("Loading server for Iron Man 2.")
 //Node Modules
@@ -49,6 +50,12 @@ app.get('/encryption_test', (req, res) => {
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/pages/index.html');
 });
+app.get('/login', function(req, res) {
+    res.sendFile(__dirname + '/pages/Login.html');
+  });
+  app.get('/regster', function(req, res) {
+    res.sendFile(__dirname + '/pages/Register.html');
+  });
 
 
 app.listen(config.port);
