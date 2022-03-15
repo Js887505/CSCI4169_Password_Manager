@@ -63,3 +63,5 @@ app.listen(config.port);
 console.log(config)
 
 console.log(`Server load complete. The server is now listening for requests on port ${config.port}.`);
+
+module.exports = app;
