@@ -57,7 +57,9 @@ app.get('/login', function(req, res) {
 app.get('/register', function(req, res) {
   res.sendFile(__dirname + '/pages/register.html');
 });
-
+app.get('/showaccounts', function(req, res) {
+    res.sendFile(__dirname + '/pages/ShowAccounts.html');
+  });
 app.listen(config.port);
 
 console.log(config)
