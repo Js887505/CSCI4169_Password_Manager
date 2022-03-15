@@ -3,9 +3,9 @@ var loginORsignupDiv = document.getElementById("signupOrLoginButtons");
 var signupDiv = document.getElementById("signupDiv");
 var loginDiv = document.getElementById("loginDiv");
 
-document.getElementById("signupButton").addEventListener("click", signupSelected);
 document.getElementById("noAccountSignupButton").addEventListener("click", signupSelected);
-document.getElementById("loginButton").addEventListener("click", loginSelected);
+document.getElementById("signupOption").addEventListener("click", signupSelected);
+document.getElementById("loginOption").addEventListener("click", loginSelected);
 document.getElementById("signupBackToMain").addEventListener("click", backToMain);
 document.getElementById("loginBackToMain").addEventListener("click", backToMain);
 
