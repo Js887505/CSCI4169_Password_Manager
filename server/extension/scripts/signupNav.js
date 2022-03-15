@@ -1,5 +1,5 @@
 var mainSection = document.getElementById("signupOrLoginSection");
-var loginORsignupDiv = document.getElementById("signupOrLoginButtons");
+var loginORsignupDiv = document.getElementById("signupOrLoginDiv");
 var signupDiv = document.getElementById("signupDiv");
 var loginDiv = document.getElementById("loginDiv");
 

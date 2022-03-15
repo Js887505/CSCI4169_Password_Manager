@@ -33,7 +33,7 @@
       <h1>Password Manager</h1>
       <section id="signupOrLoginSection">
         <!-- Initial Screen login or signup, other have no display -->
-        <div id="signupOrLoginButtons" style="display: inline">
+        <div id="signupOrLoginDiv" style="display: inline">
           <button id="signupOption" class="signupOrLoginButton" style="display: inline">Sign Up</button>
           <h2 style="display: inline">/</h2>
           <button id="loginOption" class="signupOrLoginButton" style="display: inline">Login</button>
@@ -73,19 +73,17 @@
         <!-- If login is selected, other have no display -->
         <div id="loginDiv">
           <div>
-            <div>
-              <button id="loginBackToMain" class="backButton">back</button>
-            </div>
+            <button id="loginBackToMain" class="backButton">back</button>
+          </div>
           <form>
   
-            <!-- Email input -->
+            <!-- Username input -->
             <div class="form-outline mb-4">
-              
               <label class="form-label" for="loginUsername">Name:</label>
               <br>
-              <input type="email" id="loginUsername" class="form-control form-control-lg" placeholder="Enter Name" />
+              <input type="text" id="loginUsername" class="form-control form-control-lg" placeholder="Enter Name" />
             </div>
-  
+
             <!-- Password input -->
             <div class="form-outline mb-3">
               <label class="form-label" for="loginPassword">Password</label>
@@ -102,7 +100,6 @@
               <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?</p>
               <button id="noAccountSignupButton" class="signupOrLoginButton" style="display: inline">Register Here</button>
             </div>
-  
           </form>
         </div>
       </section>
