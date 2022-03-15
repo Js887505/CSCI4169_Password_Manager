@@ -9,9 +9,9 @@ class Configuration {
   constructor(defaultConfig,configFileName) {
     console.log("Loading default configuration.");
     this.config = defaultConfig;
-    this.loadLocalConfig(configFileName)
+    this.loadLocalConfig(configFileName);
 
-    console.log("Configuration loaded.")
+    console.log("Configuration loaded.");
   }
 
   //Loads a Local JSON configuration file. Keys that are the same as defaultConfig will overwrite defaultConfig
@@ -40,7 +40,6 @@ class Configuration {
 Any config settings in .env.local will overwrite the ones here*/
 const defaultConfig = {
   "port":80,
-  "dataEncryptionKey":""
 };
 
 appConfiguration = new Configuration(defaultConfig,'./.env.local');

@@ -12,6 +12,7 @@ const config = require('./config.js');
 
 const IV_LENGTH = 16; //Initialization vector length
 const HASH_ALGORITHM = 'sha3-512';
+const HASH_ENCODING = 'base64';
 const ENCRYPTION_ALGORITHM = 'aes-256-cbc';
 const ENCRYPTION_KEY_LENGTH = 32; //Length in characters
 const ENCRYPTION_ENCODING = 'base64';
@@ -33,9 +34,9 @@ class Cryptography {
 		return crypto.randomBytes(numBytes).toString('base64');
 	}
 
-	//Returns a hex-formatted SHA3 hash from the passed in plaintext and salt.
+	//Returns a base-64 formatted SHA3 hash from the passed in plaintext and salt.
 	SHA3(plaintext, salt = "") {
-		return crypto.createHash(HASH_ALGORITHM).update(plaintext + salt).digest('hex');
+		return crypto.createHash(HASH_ALGORITHM).update(plaintext + salt).digest(HASH_ENCODING);
 	}
 
 	//Encrypts plaintext using AES-256 and returns the encrypted data in base64 format. Returns the IV concatenated with the encrypted text.
