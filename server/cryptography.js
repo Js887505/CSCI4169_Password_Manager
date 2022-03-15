@@ -21,6 +21,16 @@ class Cryptography {
 		if (config.dataEncryptionKey.length != ENCRYPTION_KEY_LENGTH) {
 			throw `Initialization Error: dataEncryptionKey has length ${config.dataEncryptionKey.length}, but it must be of length ${ENCRYPTION_KEY_LENGTH}`;
 		}
+		else if (config.dataEncryptionKey == config.exampleEncryptionKey) {
+			console.warn("**********WARNING*********");
+			console.warn("Warning: AES Encryption Key Not Set. You are currently using the example encryption key in env.example.");
+			console.warn("This is fine for testing purposes but NOT OKAY FOR DEPLOYMENT.")
+		}
+	}
+
+	//Generates a plaintext salt in base64 format that can be used for other purposes.
+	getSalt(numBytes = 32) {
+		return crypto.randomBytes(numBytes).toString('base64');
 	}
 
 	//Returns a hex-formatted SHA3 hash from the passed in plaintext and salt.
@@ -35,7 +45,7 @@ class Cryptography {
 		let encryptedText = cipher.update(plaintext,'utf8', ENCRYPTION_ENCODING);
 		encryptedText += cipher.final(ENCRYPTION_ENCODING);
 
-		//Base 64 encoding does not have colons : as a possible character, use that to separate the text.
+		//Base 64 encoding does not have colons : as a possible character, use that to separate the text and IV.
 		return iv.toString(ENCRYPTION_ENCODING) + ":" + encryptedText;
 	}
 
@@ -67,7 +77,7 @@ class Cryptography {
 
 	//Decrypts AES-256 encrypted JSON text and recreates the JavaScript object from that text. 
 	//Returns the recreated object if successful.
-	//Returns an empty object {} if there is an error parsing the JSON.
+	//Returns null if there is an error parsing the JSON.
 	decryptJSONAES256(JSONToDecrypt) {
 		let JSONObject = {};
 		try {
@@ -76,7 +86,7 @@ class Cryptography {
 		}
 		catch(err) {
 			console.log(err);
-			JSONObject = {};
+			return null;
 		}
 
 		return JSONObject;

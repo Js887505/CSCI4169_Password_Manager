@@ -10,6 +10,7 @@ const express = require('express');
 //Modules written for this project
 const config = require('./config.js');
 const cryptography = require('./cryptography.js');
+const users = require('./users.js');
 
 const app = express();
 app.use(express.json()); //Allow JSON responses to be sent back.
@@ -59,9 +60,7 @@ app.get('/register', function(req, res) {
 });
 
 app.listen(config.port);
-
-console.log(config)
-
+console.log(config);
 console.log(`Server load complete. The server is now listening for requests on port ${config.port}.`);
 
 module.exports = app;
