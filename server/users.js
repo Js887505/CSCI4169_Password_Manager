@@ -1,7 +1,6 @@
 /*
 Classes to handle storing information about all currently logged in users
 */
-const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
