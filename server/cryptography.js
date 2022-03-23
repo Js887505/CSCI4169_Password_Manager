@@ -120,7 +120,7 @@ class Cryptography {
 	//This uses a different encryption key than the one storing data on the server.
 	//Also appends a timestamp and some random data into the cookie to help prevent session jacking.
 	encryptCookieData(objectToEncrypt) {
-		if (objectToEncrypt) {
+		if (objectToEncrypt === undefined || objectToEncrypt === null) {
 			return null;
 		}
 
@@ -146,6 +146,7 @@ class Cryptography {
 			JSONObject = JSON.parse(JSONText);
 		}
 		catch(err) {
+			console.log("Error: Unable to decrypt a cookie.")
 			console.log(err);
 			return null;
 		}
