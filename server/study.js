@@ -5,12 +5,9 @@ Shares a lot of similarities with users.js
 Author(s): Keith Pineo
 */
 const fs = require('fs');
-const path = require('path');
 
 const cryptography = require('./cryptography.js');
 const config = require('./config.js');
-
-const NO_FILE_ERROR_CODE = "ENOENT";
 
 /*
 All of the study data
@@ -19,10 +16,22 @@ class Study {
 	constructor() {
 		//All participants in the study.
 		this.participants = {};
+		this.loadStudyData();
 	}
 
+	//Gets a participant.
 	getParticipant(id) {
 		return this.participants[id];
+	}
+
+	/*Returns a participant if it exists, otherwise makes a new participant*/
+	acquireParticipant(id) {
+		if (id && this.participants[id]) {
+			return this.participants[id];
+		}
+		else {
+			return this.newParticipant();
+		}
 	}
 
 	//Create a new participant add them to the list of participants. Returns the new participant.
@@ -37,8 +46,56 @@ class Study {
 
 	saveStudyData() {
 		console.log("Saving study data");
+		try {
+			//Encrypt the data then store it
+			fs.writeFileSync(config.studyDataFile,cryptography.encryptJSONAES256(this.participants),config.fileEncoding);
+			console.log("Study data saved successfully.");
+		}
+		catch(err) {
+			console.log("Error: Unable to save user data to file!");
+			console.log(err);
+		}
+	}
 
-		console.log("Study data saved");
+	loadStudyData() {
+		console.log("Init: Loading study data.")
+		let rawStudyData;
+		let fileError;
+		try {
+			rawStudyData = fs.readFileSync(config.studyDataFile,config.fileEncoding);
+		}
+		catch(err) {
+			console.log(`Error: Unable to read study data from the file ${config.studyDataFile}`)
+			console.log(err);
+			fileError = err;
+			return;//Can't load the data.
+		}
+
+		try {
+			rawStudyData = cryptography.decryptJSONAES256(rawStudyData);
+		}
+		catch(err) {
+			console.log("Error: Unable to decrypt study data.");
+			console.log(err);
+			return;
+		}
+
+		if (!rawStudyData) {
+			//There was an error of some kind parsing the data and it could not be returned to JSON format, nothing more can be done
+			console.log("Error: Something went wrong turning the study data back into JSON format.");
+			console.log(rawStudyData);
+			return;
+		}
+
+		//If it passes those previous steps it should be good to parse.
+		console.log(rawStudyData);
+
+		//Rebuild the participant data
+		for(let id in rawStudyData) {
+			this.participants[id] = Participant.fromJSON(rawStudyData[id]);
+		}
+
+		console.log("Init: Study data loaded.");
 	}
 }
 
@@ -46,24 +103,39 @@ class Study {
 A single participant in the study
 */
 class Participant {
-	constructor(id,users) {
-		this.id = id;
-		this.users = users;
+	constructor(id,users,data) {
+		this.id = id;//Unique ID for this participant
+		this.users = users;//Array of users the participant is using to log into the study with
+		this.data = data;//Data being tracked for the study, stored as a generic object
 	}
 
 	//Creates a new participant for the study
 	static newParticipant() {
-		return new Participant(cryptography.UUID(), {});
+		return new Participant(cryptography.UUID(), [], {});
 	}
 
 	//Recreates the participant object from a basic JSON object
-	fromJSON() {
-		
+	static fromJSON(JSONObj) {
+		console.log("Recreating participant");
+		console.log(JSONObj);
+
+		//Rebuild the user list
+		let users = [];
+		for(let u in JSONObj.users) {
+			users.push(User.fromJSON(JSONObj.users[u]));
+		}
+
+		return new Participant(JSONObj.id,users,JSONObj.data);
 	}
 
-	//Returns a specific user the participant created for the study
-	getUser(username) {
-		return this.users[username];
+	//Returns a specific user the participant created for the study, they are indexed from 0 to 5 corresponding to which step of the login/register they are on.
+	getUser(index) {
+		if (index > 0 && index < this.users.length) {
+			return this.users[index];
+		}
+		else {
+			return null;
+		}
 	}
 }
 
@@ -77,7 +149,7 @@ class User {
 		this.salt = salt;
 	}
 
-	newUser(username,pass) {
+	static newUser(username,pass) {
 		//This user has not had a password hash generated yet.
 		let salt = cryptography.getSalt(); //generate a salt for the password
 		pass = cryptography.SHA3(pass,salt); //Then generate the password
@@ -85,7 +157,7 @@ class User {
 		return new User(username,pass,salt);
 	}
 
-	fromJSON(JSONObj) {
+	static fromJSON(JSONObj) {
 		return new User(JSONObj.username,JSONObj.pass,JSONObj.salt);
 	}
 

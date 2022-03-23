@@ -73,20 +73,20 @@ app.get('/study', function(req, res) {
 //First page in the study
 app.get('/study_register1', function(req, res) {
   //The participant ID is stored in the cookie and used for keeping track of sessions
+  let participant;
   if (req?.cookies[config.studyCookieName]) {
     console.log("Existing connection");
     let id = cryptography.decryptCookieData(req.cookies[config.studyCookieName]);
-    console.log(id);
-    console.log(study.getParticipant(id));
+    participant = study.acquireParticipant(id);
   }
   else {
-    console.log("New Connection");
-    let newParticipant = study.newParticipant();
-    console.log(newParticipant);
-
-    res.cookie(config.studyCookieName, cryptography.encryptCookieData(newParticipant.id));
+    participant = study.newParticipant();
+    
   }
 
+  //Either a new participant will be created or an existing one grabbed, either way the cookie should be updated before being send back.
+  console.log(participant);
+  res.cookie(config.studyCookieName, cryptography.encryptCookieData(participant.id));
   res.sendFile(__dirname + '/pages/study_index.html');
 });
 
