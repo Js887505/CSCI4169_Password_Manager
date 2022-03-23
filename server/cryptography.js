@@ -39,10 +39,19 @@ class Cryptography {
 		return crypto.createHash(HASH_ALGORITHM).update(plaintext + salt).digest(HASH_ENCODING);
 	}
 
+	//Just a wrapper for crypto's UUID generator so files don't need to include both this one and crypto
+	UUID() {
+		return crypto.randomUUID();
+	}
+
 	//Encrypts plaintext using AES-256 and returns the encrypted data in base64 format. Returns the IV concatenated with the encrypted text.
-	encryptTextAES256(plaintext) {
+	encryptTextAES256(plaintext, encryptionKey = config.dataEncryptionKey) {
+		if (!plaintext) {
+			return null;
+		}
+
 		let iv = crypto.randomBytes(IV_LENGTH);
-		let cipher = crypto.createCipheriv(ENCRYPTION_ALGORITHM, config.dataEncryptionKey, iv);
+		let cipher = crypto.createCipheriv(ENCRYPTION_ALGORITHM, encryptionKey, iv);
 		let encryptedText = cipher.update(plaintext,'utf8', ENCRYPTION_ENCODING);
 		encryptedText += cipher.final(ENCRYPTION_ENCODING);
 
@@ -51,7 +60,11 @@ class Cryptography {
 	}
 
 	//Decrypts AES-256 encrypted plaintext and returns the text. Returns null if an IV or encrypted string are not found
-	decryptTextAES256(encryptedString) {
+	decryptTextAES256(encryptedString, encryptionKey = config.dataEncryptionKey) {
+		if (!encryptedString) {
+			return null;//Nothing to decrypt
+		}
+
 		//IV and data are separated by a colon.
 		encryptedString = encryptedString.split(':');
 
@@ -63,7 +76,7 @@ class Cryptography {
 		let iv = Buffer.from(encryptedString[0], ENCRYPTION_ENCODING);
 		encryptedString = encryptedString[1];
 
-		let decipher = crypto.createDecipheriv(ENCRYPTION_ALGORITHM, config.dataEncryptionKey, iv);
+		let decipher = crypto.createDecipheriv(ENCRYPTION_ALGORITHM, encryptionKey, iv);
 		let decipheredText = decipher.update(encryptedString, ENCRYPTION_ENCODING,'utf8');
 		decipheredText += decipher.final('utf8')
 
@@ -71,8 +84,13 @@ class Cryptography {
 	}
 
 	//Encodes a JavaScript object into JSON then encrypts the resulting text.
-	encryptJSONAES256(ObjectToEncrypt) {
-		let JSONtext = JSON.stringify(ObjectToEncrypt);
+	//Returns null if there is nothing to encrypt, otherwise returns the encrypted text.
+	encryptJSONAES256(objectToEncrypt) {
+		if (!objectToEncrypt) {
+			return null;
+		}
+
+		let JSONtext = JSON.stringify(objectToEncrypt);
 		return this.encryptTextAES256(JSONtext);
 	}
 
@@ -80,6 +98,11 @@ class Cryptography {
 	//Returns the recreated object if successful.
 	//Returns null if there is an error parsing the JSON.
 	decryptJSONAES256(JSONToDecrypt) {
+		if (!JSONToDecrypt) {
+			return null;
+		}
+
+
 		let JSONObject = {};
 		try {
 			let JSONText = this.decryptTextAES256(JSONToDecrypt);
@@ -91,6 +114,44 @@ class Cryptography {
 		}
 
 		return JSONObject;
+	}
+
+	//Encrypt a basic JSON object for storage in a cookie.
+	//This uses a different encryption key than the one storing data on the server.
+	//Also appends a timestamp and some random data into the cookie to help prevent session jacking.
+	encryptCookieData(objectToEncrypt) {
+		if (objectToEncrypt === undefined || objectToEncrypt === null) {
+			return null;
+		}
+
+		let cookie = {
+			"data":objectToEncrypt,
+			"timestamp": Date.now(),
+			"random": Math.random()
+		};
+
+		let JSONtext = JSON.stringify(cookie);
+
+		return this.encryptTextAES256(JSONtext, config.cookieEncryptionKey);
+	}
+
+	decryptCookieData(JSONToDecrypt) {
+		if (!JSONToDecrypt) {
+			return null;//Nothing to decrypt
+		}
+
+		let JSONObject = {};
+		try {
+			let JSONText = this.decryptTextAES256(JSONToDecrypt, config.cookieEncryptionKey);
+			JSONObject = JSON.parse(JSONText);
+		}
+		catch(err) {
+			console.log("Error: Unable to decrypt a cookie.")
+			console.log(err);
+			return null;
+		}
+
+		return JSONObject.data;
 	}
 }
 

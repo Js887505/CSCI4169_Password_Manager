@@ -1,5 +1,6 @@
 #ironman 2 project files to be ignored
 users.dat
+study.dat
 env.local
 
 
