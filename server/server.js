@@ -64,7 +64,9 @@ app.get('/login', function(req, res) {
 app.get('/register', function(req, res) {
   res.sendFile(__dirname + '/pages/register.html');
 });
-
+app.get('/showaccounts', function(req, res) {
+    res.sendFile(__dirname + '/pages/ShowAccounts.html');
+  });
 //Study index page
 app.get('/study', function(req, res) {
   res.sendFile(__dirname + '/pages/study_index.html');
