@@ -11,7 +11,6 @@ document.getElementById("loginBackToMain").addEventListener("click", backToMain)
 
 signupDiv.style.display = "none";
 loginDiv.style.display = "none";
-showAcct.style.display = "none";
 
 function signupSelected(){
   loginORsignupDiv.style.display = "none";
