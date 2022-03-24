@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      html, body{
+        margin: 0;
+        width:357px;
+        height:600px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+      div{
+        width: inherit;
+        padding-bottom: 20px;
+      }
+      #addNewAccountButton{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="showAcct">
+      <table id="accountTable" class="table">
+        <thead>
+          <tr>
+            <th scope="col">Platform</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button id="addNewAccountButton">Add New Account</button>
+    </div>
+  </body>
+  <script type="text/javascript" src="../scripts/Accounts.js"></script>
+  <script type="text/javascript" src="../scripts/showAccounts.js"></script>
+</html>
