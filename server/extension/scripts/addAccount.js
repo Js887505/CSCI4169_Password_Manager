@@ -1,5 +1,6 @@
 document.getElementById("addAccountButton").addEventListener("click", addAccount);
 document.getElementById("togglePasswordButton").addEventListener("click", toggleShowPassword);
+document.getElementById("sugguestPasswordButton").addEventListener("click", sugguestRandomPassword);
 
 function addAccount(){
   accounts.addNewAccount(document.getElementById('platformField').value, document.getElementById('usernameField').value, document.getElementById('passwordField').value);
@@ -17,4 +18,16 @@ function toggleShowPassword() {
   else {
     pwField.type = "password";
   }
+}
+
+const possibleChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+~;:,.?";
+function sugguestRandomPassword() {
+  const length = 16;
+  let randomPass = "";
+  for (let i=0;i < length; i++) {
+    index = Math.floor(Math.random() * possibleChars.length);
+    randomPass += possibleChars[index];
+  }
+
+  document.getElementById('passwordField').value = randomPass;
 }
