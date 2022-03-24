@@ -1,4 +1,15 @@
 const accounts = new Accounts();
+var showData = false;
+var tBody = document.getElementById("tableBody");
+document.getElementById("showHideDataButton").innerHTML = "Show Info";
+
+// Event listeners
+document.getElementById("addNewAccountButton").addEventListener("click", goToAddNewAccount);
+document.getElementById("lockAccountButton").addEventListener("click", goToIndex);
+document.getElementById("showHideDataButton").addEventListener("click", hideShowData);
+
+// Accessing local storage
+// For accounts
 if(localStorage.getItem('accounts')){
   let accountsObj = JSON.parse(localStorage.getItem('accounts'));
   accArray = accountsObj.accounts
@@ -6,13 +17,16 @@ if(localStorage.getItem('accounts')){
     accounts.addNewAccount(accArray[i].platform, accArray[i].username, accArray[i].password);
   }
 }
-
-
-document.getElementById("addNewAccountButton").addEventListener("click", goToAddNewAccount);
-var tBody = document.getElementById("tableBody");
-set_tBody();
+// For showdata
+if(localStorage.getItem('showData')){
+  if(localStorage.getItem('showData') === 'true'){
+    showData = true;
+    document.getElementById("showHideDataButton").innerHTML = "Hide Info";
+  }
+}
 
 function set_tBody(){
+  tBody.innerHTML = "";
   for(var i=0; i<accounts.size(); i++){
     var newTr = document.createElement("tr");
     newTr.setAttribute('id', 'row' + i);
@@ -30,20 +44,48 @@ function createRowContents(row, accountIndex){
   platformTd.setAttribute('id', 'platform' + accountIndex);
   row.appendChild(platformTd);
   
-  var usernameTd = document.createElement("td");
-  var usernameTdText = document.createTextNode(account.getUsername());
-  usernameTd.appendChild(usernameTdText);
-  usernameTd.setAttribute('id', 'username' + accountIndex);
-  row.appendChild(usernameTd);
+  if(showData){
+    var usernameTd = document.createElement("td");
+    var usernameTdText = document.createTextNode(account.getUsername());
+    usernameTd.appendChild(usernameTdText);
+    usernameTd.setAttribute('id', 'username' + accountIndex);
+    row.appendChild(usernameTd);
+  
+    var passwordTd = document.createElement("td");
+    var passwordTdText = document.createTextNode(account.getPassword());
+    passwordTd.appendChild(passwordTdText);
+    passwordTd.setAttribute('id', 'password' + accountIndex);
+    row.appendChild(passwordTd);
 
-  var passwordTd = document.createElement("td");
-  var passwordTdText = document.createTextNode(account.getPassword());
-  passwordTd.appendChild(passwordTdText);
-  passwordTd.setAttribute('id', 'password' + accountIndex);
-  row.appendChild(passwordTd);
+    usernameTd.addEventListener("click", copyToClipboard);
+    passwordTd.addEventListener("click", copyToClipboard);
+  }
+  else{
+    var usernameTd = document.createElement("td");
+    var usernameTdText = document.createTextNode('********');
+    usernameTd.appendChild(usernameTdText);
+    usernameTd.setAttribute('id', 'username' + accountIndex);
+    row.appendChild(usernameTd);
+  
+    var passwordTd = document.createElement("td");
+    var passwordTdText = document.createTextNode('********');
+    passwordTd.appendChild(passwordTdText);
+    passwordTd.setAttribute('id', 'password' + accountIndex);
+    row.appendChild(passwordTd);
+  }
+}
 
-  usernameTd.addEventListener("click", copyToClipboard);
-  passwordTd.addEventListener("click", copyToClipboard);
+function hideShowData(){
+  if(showData){
+    showData = false;
+    document.getElementById("showHideDataButton").innerHTML = "Show Info";
+  }
+  else{
+    showData = true;
+    document.getElementById("showHideDataButton").innerHTML = "Hide Info";
+  }
+  set_tBody();
+  localStorage.setItem('showData', showData)
 }
 
 function goToAddNewAccount(){
@@ -67,3 +109,10 @@ function copyToClipboard(event) {
     document.getElementById("clipboard-message").style.opacity = 0;
   },3000);//Fade the message out after 3 seconds
 }
+
+function goToIndex(){
+  window.location.href = "../pages/index.html";
+}
+
+// Call to setup accounts elements
+set_tBody();

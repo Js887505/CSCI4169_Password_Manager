@@ -26,21 +26,29 @@
     </style>
   </head>
   <body>
-    <div id="showAcct">
-      <table id="accountTable" class="table">
-        <thead>
-          <tr>
-            <th scope="col">Platform</th>
-            <th scope="col">Username</th>
-            <th scope="col">Password</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          
-        </tbody>
-      </table>
-      <p id="clipboard-message" style="opacity: 0;">Copied to clipboard.</p>
+    <div>
+      <button id="lockAccountButton">Lock Account</button>
     </div>
+    <div>
+      <button id="showHideDataButton"></button>
+    </div>
+    <section id="userAccounts">
+      <div id="showAcct">
+        <table id="accountTable" class="table">
+          <thead>
+            <tr>
+              <th scope="col">Platform</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            
+          </tbody>
+        </table>
+        <p id="clipboard-message" style="opacity: 0;">Copied to clipboard.</p>
+      </div>
+    </section>
     <div>
       <button id="addNewAccountButton">Add New Account</button>
     </div>
