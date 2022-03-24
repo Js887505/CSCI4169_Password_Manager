@@ -1,10 +1,27 @@
+// Accessing local storage
+// For accounts
+const accounts = new Accounts();
+if(localStorage.getItem('accounts')){
+  let accountsObj = JSON.parse(localStorage.getItem('accounts'));
+  accArray = accountsObj.accounts
+  for(i in accArray){
+    accounts.addNewAccount(accArray[i].platform, accArray[i].username, accArray[i].password);
+  }
+}
+
 document.getElementById("addAccountButton").addEventListener("click", addAccount);
 document.getElementById("togglePasswordButton").addEventListener("click", toggleShowPassword);
 document.getElementById("sugguestPasswordButton").addEventListener("click", sugguestRandomPassword);
 
 function addAccount(){
-  accounts.addNewAccount(document.getElementById('platformField').value, document.getElementById('usernameField').value, document.getElementById('passwordField').value);
+  var platform = document.getElementById('platformField').value;
+  var username = document.getElementById('usernameField').value;
+  var password = CryptoJS.AES.encrypt(document.getElementById('passwordField').value, 'KodSFql5M4e;Q2MX').toString();
+
+  accounts.addNewAccount(platform, username, password);
+
   let accountsObj = JSON.stringify(accounts);
+  console.log(accountsObj);
   localStorage.setItem('accounts', accountsObj)
   window.location.href = "../pages/showAccounts.html";
 }
