@@ -3,7 +3,12 @@ document.getElementById("togglePasswordButton").addEventListener("click", toggle
 document.getElementById("sugguestPasswordButton").addEventListener("click", sugguestRandomPassword);
 
 function addAccount(){
-  accounts.addNewAccount(document.getElementById('platformField').value, document.getElementById('usernameField').value, document.getElementById('passwordField').value);
+  var platform = document.getElementById('platformField').value;
+  var username = document.getElementById('usernameField').value;
+  var password = CryptoJS.AES.encrypt(document.getElementById('passwordField').value, 'KodSFql5M4e;Q2MX').toString();
+
+  accounts.addNewAccount(platform, username, password);
+
   let accountsObj = JSON.stringify(accounts);
   localStorage.setItem('accounts', accountsObj)
   window.location.href = "../pages/showAccounts.html";
