@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 const config = require('./config.js');
 const cryptography = require('./cryptography.js');
 const users = require('./users.js');
-const study = require('./study.js');
+const StudyRouteHandlers = require('./studyHandlers.js');
 
 const app = express();
 app.use(express.json()); //Allow JSON responses to be sent back.
@@ -73,24 +73,7 @@ app.get('/study', function(req, res) {
 });
 
 //First page in the study
-app.get('/study_register1', function(req, res) {
-  //The participant ID is stored in the cookie and used for keeping track of sessions
-  let participant;
-  if (req?.cookies[config.studyCookieName]) {
-    console.log("Existing connection");
-    let id = cryptography.decryptCookieData(req.cookies[config.studyCookieName]);
-    participant = study.acquireParticipant(id);
-  }
-  else {
-    participant = study.newParticipant();
-    
-  }
-
-  //Either a new participant will be created or an existing one grabbed, either way the cookie should be updated before being send back.
-  console.log(participant);
-  res.cookie(config.studyCookieName, cryptography.encryptCookieData(participant.id));
-  res.sendFile(__dirname + '/pages/study_index.html');
-});
+app.get('/study_register1', StudyRouteHandlers.registerPage1);
 
 app.listen(config.port);
 console.log(config);
@@ -99,12 +82,12 @@ console.log(`Server load complete. The server is now listening for requests on p
 /*Handle gracefully shutting down the server.*/
 process.on('SIGTERM', () => {
   console.log("SIGTERM signal received. Preparing to quit process.");
-  process.exit(0);//This should also trigger process.exit();
+  process.exit(0);//This should also trigger the on exit event
 });
 
 process.on('SIGINT', () => {
   console.log("SIGINT signal received. Preparing to quit process.");
-  process.exit(0);//This should also trigger process.exit();
+  process.exit(0);//This should also trigger the on exit event
 });
 
 process.on('exit', (code) => {
@@ -120,5 +103,3 @@ function shutdownApp() {
   //Quit the process
   console.log("Data should be saved at this point, exiting the server.")
 }
-
-module.exports = app;

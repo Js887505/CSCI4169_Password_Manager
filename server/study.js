@@ -128,14 +128,21 @@ class Participant {
 		return new Participant(JSONObj.id,users,JSONObj.data);
 	}
 
-	//Returns a specific user the participant created for the study, they are indexed from 0 to 5 corresponding to which step of the login/register they are on.
+	//Returns a specific user the participant created for the study, they are indexed from 0 to 2 corresponding to which step of the login/register they are on.
 	getUser(index) {
-		if (index > 0 && index < this.users.length) {
+		if (index >= 0 && index < this.users.length) {
 			return this.users[index];
 		}
 		else {
 			return null;
 		}
+	}
+
+	//Registers a user for a specific index
+	addUser(username,pass,index) {
+		this.users[index] = User.newUser(username,pass);
+
+		return this.users[index];
 	}
 }
 
