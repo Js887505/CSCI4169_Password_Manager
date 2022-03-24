@@ -15,7 +15,7 @@ A class for keeping track of and handling Users.
 class Users {
 	constructor() {
 		this.userList = {};//users stored as a key by their username
-		config.userDataFilePath = path.resolve(__dirname,config.userDataFile);//Get the absolute path for reading and writing files.
+		config.userDataFilePath = path.resolve(__dirname);//Get the absolute path for reading and writing files.
 
 		this.loadUserData();
 	}

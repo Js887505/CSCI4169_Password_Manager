@@ -96,39 +96,40 @@
             </div>
   
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+              <button id="loginButton" type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
               <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?</p>
               <button id="noAccountSignupButton" class="signupOrLoginButton" style="display: inline">Register Here</button>
             </div>
           </form>
         </div>
-
-        <div id="showAcct">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Platform</th>
-                <th scope="col">Username</th>
-                <th scope="col">Password</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Instagram</th>
-                <td>Mark</td>
-                <td>mark!234</td>
-              </tr>
-              <tr>
-                <th scope="row">Facebook</th>
-                <td>Markus</td>
-                <td>M4rku5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </section>
+      <div id="showAcct">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Platform</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Instagram</th>
+              <td>Mark</td>
+              <td>mark!234</td>
+            </tr>
+            <tr>
+              <th scope="row">Facebook</th>
+              <td>Markus</td>
+              <td>M4rku5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
   </body>
+  <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+  <script type="text/javascript" src="../scripts/extUsers.js"></script>
   <script type="text/javascript" src="../scripts/signupNav.js"></script>
   <script type="text/javascript" src="../scripts/signup.js"></script>
   <script type="text/javascript" src="../scripts/login.js"></script>

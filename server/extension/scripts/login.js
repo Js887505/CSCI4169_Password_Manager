@@ -1,8 +1,9 @@
-const usersScript = require('../../users.js');
+document.getElementById("loginButton").addEventListener("click", login);
 
 function login(){
-  if(usersScript.userExists(document.getElementById("loginUsername").value)){
-    let user = usersScript.getUser(document.getElementById("loginUsername").value);
+  if(extensionUsers.userExists(document.getElementById("loginUsername").value)){
+    user = extensionUsers.getUser(document.getElementById("loginUsername").value);
+    console.log(user);
     if(user.checkPassword(document.getElementById("signupPassword").value)){
       alert("Success");
     }

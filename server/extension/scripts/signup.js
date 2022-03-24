@@ -1,13 +1,13 @@
-const usersScript = require('../../users.js');
-
-var usernameField = document.getElementById("signupUsername");
-var passwordField = document.getElementById("signupPassword");
-var username, password;
-
+require.config({
+  paths: {
+    'crypto-js': '../bower_components/crypto-js/crypto-js',
+  }
+});
+const extensionUsers = new extUsers();
 document.getElementById("signupButton").addEventListener("click", signup);
 
-
 function signup(){
-  user.createUser(document.getElementById("signupUsername").value, document.getElementById("signupPassword").value);
-  user.saveUserData();
+  extensionUsers.createUser(document.getElementById("signupUsername").value, document.getElementById("signupPassword").value);
+  console.log("User created, Users: ");
+  console.log(extensionUsers);
 }
