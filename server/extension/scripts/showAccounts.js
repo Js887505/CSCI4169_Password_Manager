@@ -7,8 +7,9 @@ if(localStorage.getItem('accounts')){
   }
 }
 
-
 document.getElementById("addNewAccountButton").addEventListener("click", goToAddNewAccount);
+document.getElementById("lockAccountButton").addEventListener("click", goToIndex);
+
 var tBody = document.getElementById("tableBody");
 set_tBody();
 
@@ -45,4 +46,8 @@ function createRowContents(row, accountIndex){
 
 function goToAddNewAccount(){
   window.location.href = "../pages/addNewAccount.html";
+}
+
+function goToIndex(){
+  window.location.href = "../pages/index.html";
 }
