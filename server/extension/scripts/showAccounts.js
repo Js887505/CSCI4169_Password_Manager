@@ -56,6 +56,9 @@ function createRowContents(row, accountIndex){
     passwordTd.appendChild(passwordTdText);
     passwordTd.setAttribute('id', 'password' + accountIndex);
     row.appendChild(passwordTd);
+
+    usernameTd.addEventListener("click", copyToClipboard);
+    passwordTd.addEventListener("click", copyToClipboard);
   }
   else{
     var usernameTd = document.createElement("td");
@@ -87,6 +90,24 @@ function hideShowData(){
 
 function goToAddNewAccount(){
   window.location.href = "../pages/addNewAccount.html";
+}
+
+var messageFade;
+
+function copyToClipboard(event) {
+  navigator.clipboard.writeText(event.target.innerHTML);
+  //document.getElementById("clipboard-message").style.visibility = "visible";
+  document.getElementById("clipboard-message").style.opacity = 1;
+
+  if (messageFade) {
+    clearTimeout(messageFade);
+    messageFade = null;
+  }
+
+  setTimeout(function() {
+    //document.getElementById("clipboard-message").style.visibility = "hidden";
+    document.getElementById("clipboard-message").style.opacity = 0;
+  },3000);//Fade the message out after 3 seconds
 }
 
 function goToIndex(){
