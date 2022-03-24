@@ -52,7 +52,7 @@ function createRowContents(row, accountIndex){
     row.appendChild(usernameTd);
   
     var passwordTd = document.createElement("td");
-    var passwordTdText = document.createTextNode(account.getPassword());
+    var passwordTdText = document.createTextNode(CryptoJS.AES.decrypt(account.getPassword(), 'KodSFql5M4e;Q2MX').toString(CryptoJS.enc.Utf8));
     passwordTd.appendChild(passwordTdText);
     passwordTd.setAttribute('id', 'password' + accountIndex);
     row.appendChild(passwordTd);
