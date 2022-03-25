@@ -4,42 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-      html, body{
-        margin: 0;
-        width:357px;
-        height:600px;
-        overflow-x: hidden;
-        overflow-y: hidden;
-      }
-      div{
-        width: inherit;
-        padding-bottom: 20px;
-      }
-      #addNewAccountButton{
-        text-align: center;
-      }
-    </style>
+    <link href="../styles/commonStyles.css" rel="stylesheet">
+    <link href="../styles/addNewAccountStyle.css" rel="stylesheet">
   </head>
   <body>
-    <div>
-      <div>
-        <label for="platformField">Platform: </label>
-        <input id="platformField" type="text" placeholder="www.twitter.com"/>
-      </div>
-      <div>
-        <label for="usernameField">Username: </label>
-        <input id="usernameField" type="text" placeholder="username"/>
-      </div>
-      <div>
-        <label for="passwordField">Password: </label>
-        <input id="passwordField" type="password" placeholder="Password"/>
-      </div>
-      <button id="togglePasswordButton">Show/Hide Password</button>
-      <button id="sugguestPasswordButton">Sugguest a Strong Password</button>
+    <div id="passManagerHeader">
+      <button id="BackToMain" class="backButton">&#8592;</button>
+      <h1 id="passwordManagerTitle">Password Manager</h1>
     </div>
-    <div>
+    <section id="accountInfo">
+      <div>
+        <div class="inputFieldDiv">
+          <label for="platformField">Platform: </label>
+          <input id="platformField" type="text" placeholder="www.example.com"/>
+        </div>
+        <div class="inputFieldDiv">
+          <label for="usernameField">Username: </label>
+          <input id="usernameField" type="text" placeholder="Username"/>
+        </div>
+        <div class="inputFieldDiv">
+          <label for="passwordField">Password: </label>
+          <input id="passwordField" type="password" placeholder="Password"/>
+        </div>
+        <div class="buttonGroup">
+          <button id="togglePasswordButton">Show/Hide Password</button>
+          <button id="suggestPasswordButton">Generate Password</button>
+        </div>
+      </div>
+    </section>
+    <div class="alignCenter inlineBlock">
       <button id="addAccountButton">Add Account</button>
+    </div>
+    <div id="passManagerFooter">
+      <nav>
+
+      </nav>
     </div>
   </body>
   <script type="text/javascript" src="../bower_components/crypto-js/crypto-js.js"></script>
