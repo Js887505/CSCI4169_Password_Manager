@@ -7,26 +7,29 @@ class Accounts {
     return this.accounts[i];
   }
 
-  addNewAccount(platform, username, password){
-    this.accounts.push(new Account(platform, username, password));
+  addNewAccount(platform, link, username, password){
+    this.accounts.push(new Account(platform, link, username, password));
   }
 
   size(){
     return this.accounts.length;
   }
-
-
 }
 
 class Account{
-  constructor(platform, username, password){
+  constructor(platform, link, username, password){
     this.platform = platform;
+    this.link = link;
     this.username = username;
     this.password = password;
   }
 
   getPlatform(){
     return this.platform;
+  }
+
+  getURL(){
+    return this.link;
   }
 
   getUsername(){

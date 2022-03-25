@@ -1,0 +1,69 @@
+#clipboard-message {
+  transition:  opacity 1s;
+}
+#showHideDataButton{
+  float: right;
+  margin: 5px 10px 0px 0px;
+}
+#lockAccountButton{
+  position: absolute;
+  margin: auto;
+  top: 10px;
+  margin-left: 5px;
+  width: 40px;
+  font-weight: bold;
+  font-size: 28px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+}
+.lockAccountButton:hover{
+  font-size: 36px;
+  margin-top: -10px;
+  margin-left: -5px;
+  width: 50px;
+  color:rgb(29, 29, 29)e;
+}
+#userAccounts{
+  padding: 20px 0px 0px 0;
+  margin-left: 5px;
+  width: 347px;
+  height: 340px;
+  background-color: #304c70;
+  border: 1px solid #15181b66;
+}
+#headRow{
+
+}
+table{
+  border-collapse: collapse;
+  width: 347px;
+}
+tbody{
+  width: inherit;
+}
+thead{
+  width: inherit;
+}
+th{
+  margin-left: 5px;
+  font-size: 11px;
+  max-width: 109px;
+  word-wrap: break-word;
+  text-align: center;
+  border-bottom: 1px solid #15181b66;
+  border-right: 1px solid #15181b66;
+}
+tr{
+  width: 327px;
+}
+td{
+  margin-left: 5px;
+  font-size: 11px;
+  min-width: 109px;
+  max-width: 109px;
+  height: 20px;
+  word-wrap: break-word;
+  text-align: center;
+  border: 1px solid #15181b66;
+}

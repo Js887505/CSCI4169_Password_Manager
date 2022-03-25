@@ -1,7 +1,7 @@
 const accounts = new Accounts();
 var showData = false;
 var tBody = document.getElementById("tableBody");
-document.getElementById("showHideDataButton").innerHTML = "Show Info";
+document.getElementById("showHideDataButton").innerHTML = "&#x1F441;";
 
 // Event listeners
 document.getElementById("addNewAccountButton").addEventListener("click", goToAddNewAccount);
@@ -14,14 +14,14 @@ if(localStorage.getItem('accounts')){
   let accountsObj = JSON.parse(localStorage.getItem('accounts'));
   accArray = accountsObj.accounts
   for(i in accArray){
-    accounts.addNewAccount(accArray[i].platform, accArray[i].username, accArray[i].password);
+    accounts.addNewAccount(accArray[i].platform, accArray[i].link, accArray[i].username, accArray[i].password);
   }
 }
 // For showdata
 if(localStorage.getItem('showData')){
   if(localStorage.getItem('showData') === 'true'){
     showData = true;
-    document.getElementById("showHideDataButton").innerHTML = "Hide Info";
+    document.getElementById("showHideDataButton").innerHTML = "&#128065;";
   }
 }
 
@@ -43,6 +43,7 @@ function createRowContents(row, accountIndex){
   platformTd.appendChild(platformTdText);
   platformTd.setAttribute('id', 'platform' + accountIndex);
   row.appendChild(platformTd);
+  platformTd.addEventListener('click', copyToClipboard);
   
   if(showData){
     var usernameTd = document.createElement("td");
@@ -78,11 +79,11 @@ function createRowContents(row, accountIndex){
 function hideShowData(){
   if(showData){
     showData = false;
-    document.getElementById("showHideDataButton").innerHTML = "Show Info";
+    document.getElementById("showHideDataButton").innerHTML = "&#x1F441;";
   }
   else{
     showData = true;
-    document.getElementById("showHideDataButton").innerHTML = "Hide Info";
+    document.getElementById("showHideDataButton").innerHTML = "&#128065;";
   }
   set_tBody();
   localStorage.setItem('showData', showData)
@@ -111,6 +112,7 @@ function copyToClipboard(event) {
 }
 
 function goToIndex(){
+  localStorage.setItem('session', false);
   window.location.href = "../pages/index.html";
 }
 

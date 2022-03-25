@@ -4,39 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-      html, body{
-        margin: 0;
-        width:357px;
-        height:600px;
-        overflow-x: hidden;
-        overflow-y: hidden;
-      }
-      div{
-        width: inherit;
-        padding-bottom: 20px;
-      }
-      #addNewAccountButton{
-        text-align: center;
-      }
-
-      #clipboard-message {
-        transition:  opacity 1s;
-      }
-    </style>
+    <link href="../styles/commonStyles.css" rel="stylesheet">
+    <link href="../styles/showAccountsStyle.css" rel="stylesheet">
   </head>
   <body>
-    <div>
-      <button id="lockAccountButton">Lock Account</button>
-    </div>
-    <div>
-      <button id="showHideDataButton"></button>
-    </div>
-    <section id="userAccounts">
-      <div id="showAcct">
+    <main>
+      <div id="passManagerHeader">
+        <button id="lockAccountButton">&#128274;</button>
+        <h1 id="passwordManagerTitle">Password Manager</h1>
+      </div>
+      <div>
+        <button id="showHideDataButton"></button>
+      </div>
+      <section id="userAccounts">
         <table id="accountTable" class="table">
           <thead>
-            <tr>
+            <tr id="headRow">
               <th scope="col">Platform</th>
               <th scope="col">Username</th>
               <th scope="col">Password</th>
@@ -47,11 +30,16 @@
           </tbody>
         </table>
         <p id="clipboard-message" style="opacity: 0;">Copied to clipboard.</p>
+      </section>
+      <div class="alignCenter inlineBlock">
+        <button id="addNewAccountButton">Add Account</button>
       </div>
-    </section>
-    <div>
-      <button id="addNewAccountButton">Add New Account</button>
-    </div>
+      <div id="passManagerFooter">
+        <nav>
+  
+        </nav>
+      </div>
+    </main>
   </body>
   <script type="text/javascript" src="../bower_components/crypto-js/crypto-js.js"></script>
   <script type="text/javascript" src="../scripts/Accounts.js"></script>
