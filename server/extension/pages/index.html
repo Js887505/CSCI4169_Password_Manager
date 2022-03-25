@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+      html, body, p, h1, h2, button{
+        color: antiquewhite;
+      }
       html, body{
         margin: 0;
         width:357px;
         height:600px;
         overflow-x: hidden;
         overflow-y: hidden;
+        background-color: #526B8B;
+      }
+      .passwordManagerTitle{
+        padding-bottom: 5px;
+        text-align: center;
+        border-bottom: 1px solid #22325B;
+        border-radius: 10px;
       }
       div{
         padding-bottom: 20px;
@@ -30,7 +40,7 @@
   </head>
   <body>
     <main>
-      <h1>Password Manager</h1>
+      <h1 class="passwordManagerTitle">Password Manager</h1>
       <section id="signupOrLoginSection">
         <!-- Initial Screen login or signup, other have no display -->
         <div id="signupOrLoginDiv" style="display: inline">
