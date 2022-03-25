@@ -1,0 +1,41 @@
+#passwordManagerTitle{
+  margin: auto;
+  text-align: center;
+  background-color: #1f4372;
+}
+.signupOrLoginButton{
+  color: antiquewhite;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;    
+}
+.inputFieldDiv{
+  margin-left: 35px;
+  width: fit-content;
+}
+.inputFieldDiv label{
+  display: inline-block;
+  width: 70px;
+}
+.inputFieldDiv input{
+  width: 160px;
+}
+.backButton{
+  position: absolute;
+  margin: auto;
+  top: 10px;
+  margin-left: 5px;
+  width: 40px;
+  font-weight: bold;
+  font-size: 36px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+}
+.backButton:hover{
+  font-size: 50px;
+  margin-top: -10px;
+  margin-left: -5px;
+  width: 50px;
+  color:rgb(29, 29, 29)e;
+}
