@@ -11,7 +11,7 @@ if(localStorage.getItem('accounts')){
 
 document.getElementById("addAccountButton").addEventListener("click", addAccount);
 document.getElementById("togglePasswordButton").addEventListener("click", toggleShowPassword);
-document.getElementById("sugguestPasswordButton").addEventListener("click", sugguestRandomPassword);
+document.getElementById("suggestPasswordButton").addEventListener("click", suggestRandomPassword);
 
 function addAccount(){
   var platform = document.getElementById('platformField').value;
@@ -38,7 +38,7 @@ function toggleShowPassword() {
 }
 
 const possibleChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+~;:,.?";
-function sugguestRandomPassword() {
+function suggestRandomPassword() {
   const length = 16;
   let randomPass = "";
   for (let i=0;i < length; i++) {

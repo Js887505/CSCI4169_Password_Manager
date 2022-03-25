@@ -20,22 +20,15 @@
 .inputFieldDiv input{
   width: 160px;
 }
-.backButton{
-  position: absolute;
-  margin: auto;
-  top: 10px;
-  margin-left: 5px;
-  width: 40px;
-  font-weight: bold;
-  font-size: 36px;
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
+a:link{
+  color: azure;
 }
-.backButton:hover{
-  font-size: 50px;
-  margin-top: -10px;
-  margin-left: -5px;
-  width: 50px;
-  color:rgb(29, 29, 29)e;
+a:visited{
+  color: azure;
+}
+a:hover{
+  color: rgb(223, 50, 50);
+}
+a:active{
+  color: rgb(245, 135, 135);
 }
