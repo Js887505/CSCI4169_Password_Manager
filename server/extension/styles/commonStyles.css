@@ -1,0 +1,61 @@
+html, body, p, h1, h2{
+  color: rgb(209, 200, 187);
+}
+html, body{
+  margin: 0;
+  width:357px;
+  height:600px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: #183357;
+}
+div{
+  width: 100%;
+  margin-top: 20px;
+}
+.alignCenter{
+  text-align: center;
+}
+.inlineBlock{
+  display: inline-block;
+}
+.inline{
+  display: inline;
+}
+.noWhiteSpace{
+  white-space:nowrap;
+}
+.justifyContent{
+  justify-content: center;
+}
+a:link{
+  color: azure;
+}
+a:visited{
+  color: azure;
+}
+a:hover{
+  color: rgb(223, 50, 50);
+}
+a:active{
+  color: rgb(245, 135, 135);
+}
+#passManagerHeader{
+  margin: auto;
+  width: inherit;
+  background-color: #1f4372;
+  padding: 15px;
+  justify-content: center;
+  border-bottom: 2px solid #1f2638;
+  border-radius: 10px;
+}
+#passManagerFooter{
+  position: absolute;
+  height: 45px;
+  bottom: -5px;
+  background-color: #1f4372;
+  padding-top: 20px;
+  text-align: center;
+  border-top: 1px solid #1f2638;
+  border-radius: 10px;
+}

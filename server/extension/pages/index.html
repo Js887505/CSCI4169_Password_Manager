@@ -4,97 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-      html, body, p, h1, h2, button{
-        color: antiquewhite;
-      }
-      html, body{
-        margin: 0;
-        width:357px;
-        height:600px;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        background-color: #526B8B;
-      }
-      .passwordManagerTitle{
-        padding-bottom: 5px;
-        text-align: center;
-        border-bottom: 1px solid #22325B;
-        border-radius: 10px;
-      }
-      div{
-        padding-bottom: 20px;
-      }
-      #signupOrLoginSection{
-        text-align: center;
-      }
-      .signupOrLoginButton{
-        background-color: Transparent;
-        background-repeat:no-repeat;
-        border: none;    
-      }
-      .backButton{
-        float: left;
-      }
-    </style>
+
+    <link href="../styles/commonStyles.css" rel="stylesheet">
+    <link href="../styles/indexStyles.css" rel="stylesheet">
   </head>
   <body>
     <main>
-      <h1 class="passwordManagerTitle">Password Manager</h1>
+      <div id="passManagerHeader">
+        <button id="BackToMain" class="backButton">&#8592;</button>
+        <h1 id="passwordManagerTitle">Password Manager</h1>
+      </div>
+      
       <section id="signupOrLoginSection">
         <!-- Initial Screen login or signup, other have no display -->
-        <div id="signupOrLoginDiv" style="display: inline">
+        <div id="signupOrLoginDiv" class="alignCenter">
           <button id="signupOption" class="signupOrLoginButton" style="display: inline">Sign Up</button>
-          <h2 style="display: inline">/</h2>
+          <h2 class="inline">/</h2>
           <button id="loginOption" class="signupOrLoginButton" style="display: inline">Login</button>
         </div>
         <!-- If signup is selected, other have no display -->
-        <div id="signupDiv">
-          <div>
-            <button id="signupBackToMain" class="backButton">back</button>
-          </div>
-          <div>
-            <label class="form-label" for="signupUsername">Username: </label>
-            <br>
+        <div id="signupDiv" class="alignCenter">
+          <div class="inputFieldDiv">
+            <label for="signupUsername">Username: </label>
             <input type="text" id="signupUsername" class="form-control" />
           </div>
-          <div>
-            <label class="form-label" for="signupPassword">Password: </label>
-            <br>
+          <div class="inputFieldDiv">
+            <label for="signupPassword">Password: </label>
             <input type="password" id="signupPassword" class="form-control" />
           </div>
-          <div>
+          <div class="alignCenter">
             <button id="signupButton">Sign Up</button>
-          </div>'
+          </div>
         </div>
 
         <!-- If login is selected, other have no display -->
-        <div id="loginDiv">
-          <div>
-            <button id="loginBackToMain" class="backButton" style="color: black;">back</button>
-          </div>
+
+        <div id="loginDiv" class="alignCenter">
           <!-- Username input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="loginUsername">Name:</label>
-            <br>
-            <input type="text" id="loginUsername" class="form-control form-control-lg" placeholder="Enter Name" />
+          <div class="inputFieldDiv">
+            <label for="loginUsername">Username: </label>
+            <input type="text" id="loginUsername" class="" placeholder="Username"/>
           </div>
           <!-- Password input -->
-          <div class="form-outline mb-3">
-            <label class="form-label" for="loginPassword">Password</label>
-            <br>
+          <div class="inputFieldDiv">
+            <label for="loginPassword">Password: </label>
             <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Enter password" />
           </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <a href="#!" class="text-body">Forgot password?</a>
+          <div class="alignCenter inlineBlock">
+            <a href="#!">Forgot password?</a>
           </div>
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button id="loginButton" type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem; color: black;" >Login</button>
+          <div  class="alignCenter inlineBlock">
+            <button id="loginButton" type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?</p>
             <button id="noAccountSignupButton" class="signupOrLoginButton" style="display: inline">Register Here</button>
           </div>
         </div>
       </section>
+      <div id="passManagerFooter">
+        <nav>
+
+        </nav>
+      </div>
     </main>
   </body>
   <script type="text/javascript" src="../scripts/signupNav.js"></script>
