@@ -2,6 +2,9 @@
 ### **Team:** Iron Man 2
 ### Password Manager Study
 
+#### Note:
+The signup feature is not implemented, all data is stored locally amongst all instances as of latest update.
+
 #### Setup Instructions:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To gain access to the password manager you will have to follow these steps and upload the password manager's ***extension*** folder to your preferred web broswer.
  * Download the Git repository
