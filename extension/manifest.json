@@ -1,7 +1,7 @@
 {
-  "name": "Extension Demo",
+  "name": "IM2 Password Manager",
   "version": "1.0",
-  "description": "Build an Basic Extension!",
+  "description": "Iron Man 2 - High Fidelity Prototype Password Manager",
   "permissions": ["activeTab"],
   "browser_action": {
     "default_popup": "/pages/index.html",
@@ -12,5 +12,5 @@
     }
   },
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' https://requirejs.org/docs/release/2.3.5/minified/require.js; object-src 'self'"
+  "content_security_policy": "object-src 'self'"
 }
